@@ -1,0 +1,14 @@
+=== TESTE INICIADO Tue Sep 16 11:45:20 EDT 2025 ===
+
+URL: http://nextjs-app.local
+
+ingress_req1 -> nextjs-app-796f9c5489-rwnp2 (10.244.0.51)
+ingress_req2 -> nextjs-app-796f9c5489-8rqlc (10.244.0.50)
+ingress_req3 -> nextjs-app-796f9c5489-8rqlc (10.244.0.50)
+ingress_req4 -> nextjs-app-796f9c5489-hjszc (10.244.0.47)
+ingress_req5 -> nextjs-app-796f9c5489-rwnp2 (10.244.0.51)
+ingress_req6 -> nextjs-app-796f9c5489-hjszc (10.244.0.47)
+ingress_req7 -> nextjs-app-796f9c5489-rwnp2 (10.244.0.51)
+ingress_req8 -> nextjs-app-796f9c5489-8rqlc (10.244.0.50)
+ingress_req9 -> nextjs-app-796f9c5489-rwnp2 (10.244.0.51)
+ingress_req10 -> nextjs-app-796f9c5489-8rqlc (10.244.0.50)

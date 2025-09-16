@@ -1,0 +1,47 @@
+# Containerfile para o sidecar Pod Info
+FROM docker.io/library/node:18-alpine
+
+WORKDIR /app
+
+# Copiar arquivos do sidecar
+COPY package.json ./
+COPY server.js ./
+
+# Instalar dependências (não há nenhuma, mas manter para futuro)
+RUN npm install --production
+
+# Criar usuário não-root
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S nodejs -u 1001
+
+# Mudar para usuário não-root
+USER nodejs
+
+# Expor porta do sidecar
+EXPOSE 8080
+
+# Configurar variáveis de ambiente
+ENV NODE_ENV=production
+ENV SIDECAR_PORT=8080
+
+# Health check
+HEALTHCHECK --interval=10s --timeout=3s --start-period=5s --retries=3 \
+  CMD node -e " \
+    const http = require('http'); \
+    const options = { \
+      hostname: 'localhost', \
+      port: process.env.SIDECAR_PORT || 8080, \
+      path: '/health', \
+      method: 'GET', \
+      timeout: 2000 \
+    }; \
+    const req = http.request(options, (res) => { \
+      process.exit(res.statusCode === 200 ? 0 : 1); \
+    }); \
+    req.on('error', () => process.exit(1)); \
+    req.on('timeout', () => process.exit(1)); \
+    req.end(); \
+  "
+
+# Iniciar servidor
+CMD ["node", "server.js"]

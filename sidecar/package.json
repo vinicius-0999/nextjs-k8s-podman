@@ -1,0 +1,14 @@
+{
+  "name": "pod-info-sidecar",
+  "version": "1.0.0",
+  "description": "Sidecar container para expor variáveis de ambiente do Kubernetes pod",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

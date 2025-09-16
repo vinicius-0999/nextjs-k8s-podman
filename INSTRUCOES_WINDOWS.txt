@@ -1,0 +1,52 @@
+=== COMO ACESSAR A APLICAÇÃO DO WINDOWS ===
+
+🚀 SOLUÇÃO FUNCIONANDO: Port Forward
+
+PASSO 1: No WSL (Linux)
+------------------------
+Abra o terminal WSL e execute:
+
+cd ~/inst/projeto_sabia/nextjs-k8s-podman
+/home/vini-lnx/inst/projeto_sabia/nextjs-k8s-podman/scripts/setup-port-forward.sh
+
+Aguarde a mensagem: "✅ Port-forward ativo na porta 3000"
+
+PASSO 2: No Windows  
+-------------------
+Abra qualquer navegador e acesse:
+
+http://localhost:3000
+
+OU
+
+http://172.25.0.252:3000
+
+PASSO 3: Verificação
+-------------------
+Você deve ver:
+✅ Informações do Pod Kubernetes
+✅ Background verde (#2ecc71) 
+✅ Lista de variáveis de ambiente
+
+📁 ARQUIVOS IMPORTANTES:
+- acesso-windows.bat (clique duplo para abrir)
+- teste-conectividade-windows.ps1 (teste completo)
+
+⚠️ IMPORTANTE: 
+O método antigo com nextjs-app.local NÃO funciona
+porque Windows não consegue acessar IPs do WSL diretamente.
+
+Use sempre localhost:3000 com port-forward!
+
+=== TROUBLESHOOTING ===
+
+Erro "conexão recusada"?
+- Execute: pkill -f "kubectl port-forward"  
+- Execute novamente o script setup-port-forward.sh
+
+Port-forward parou?
+- É normal, execute novamente quando precisar
+
+Windows não conecta?
+- Teste: curl http://localhost:3000 (no cmd)
+- Verifique se o port-forward está rodando no WSL

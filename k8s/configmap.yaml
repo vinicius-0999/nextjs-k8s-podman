@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nextjs-config
+  namespace: nextjs-app
+data:
+  BACKGROUND_COLOR: "#e74c3c"  # Cor vermelha por padrão
+  NODE_ENV: "production"

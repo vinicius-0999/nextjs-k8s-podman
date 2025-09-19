@@ -1,0 +1,21 @@
+stages:
+  - build
+  - deploy
+
+build-images:
+  stage: build
+  image: quay.io/podman/stable:latest
+  script:
+    - ./scripts/build-gitlab.sh
+  only:
+    - main
+
+deploy:
+  stage: deploy
+  image: bitnami/kubectl:latest
+  script:
+    - ./scripts/deploy-gitlab.sh
+  kubernetes:
+    agent: $K8S_AGENT   # vem de variável no GitLab
+  only:
+    - main
